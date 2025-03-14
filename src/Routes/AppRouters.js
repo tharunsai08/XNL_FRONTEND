@@ -1,10 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from '../Components/Pages/LandingPage';
-import Login from '../Components/Pages/Login';
-import Signup from '../Components/Pages/Signup';
-import ForgotPassword from '../Components/Pages/ForgotPassword';
-import Logout from '../Components/Pages/Logout';
+import LandingPage from '../Pages/LandingPage';
+import Login from '../Pages/Login';
+import Signup from '../Pages/Signup';
+import ForgotPassword from '../Pages/ForgotPassword';
+import Logout from '../Pages/Logout';
+import DashBoard from '../Components/DashBoard';
+
 // import ErrorPage from '../Components/Pages/ErrorPage'; // If you have a 404 error page
 
 const AppRouters: React.FC = () => {
@@ -15,6 +17,11 @@ const AppRouters: React.FC = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/logout" element={<Logout />} />
+
+      <Route path="/dashboard" element={<DashBoard />} />
+
+
+      
       {/* <Route path="*" element={<ErrorPage />} /> Optional 404 catch-all route */}
     </Routes>
   );
