@@ -9,6 +9,7 @@ const navigate = useNavigate();
 useEffect(() => {
     // Clear localStorage/sessionStorage or any auth tokens
     localStorage.removeItem('authToken');
+    // console.log(authToken);
     sessionStorage.clear();
 
     // Show loader briefly then redirect to login

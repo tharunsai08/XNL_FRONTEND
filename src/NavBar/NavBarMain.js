@@ -5,8 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 // Import your new logo if any
-// import logo from '../../Assets/images/your-fitness-logo.png'; // change accordingly
-
+import fit_track from './fit_track.png';
 // Define Dashboard Tabs
 const dashboardTabs = ['Workouts', 'Diet & AI Suggestions', 'Challenges & Leaderboard'];
 
@@ -17,7 +16,7 @@ const NavBarMain: React.FC = () => {
   const location = useLocation();
 
   const handleNavigate = (tab: string) => {
-    if (tab === 'Workouts') navigate('/dashboard/');
+    if (tab === 'Workouts') navigate('/dashboard/workouts');
     if (tab === 'Diet & AI Suggestions') navigate('/dashboard/diet');
     if (tab === 'Challenges & Leaderboard') navigate('/dashboard/challenges');
   };
@@ -48,7 +47,7 @@ const NavBarMain: React.FC = () => {
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Logo + Title */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          {/* <img src={logo} alt="Fitness Logo" style={{ width: '130px', height: '60px', marginRight: '10px' }} /> */}
+          {/* <img src={logo} alt="fit_track" style={{ width: '130px', height: '60px', marginRight: '10px' }} /> */}
           <Typography variant="h6" color="primary" sx={{ fontWeight: 'bold' }}>
             FitTracker
           </Typography>

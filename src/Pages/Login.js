@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+// Generate CAPTCHA function
 const generateCaptcha = () => {
-  const chars = "0123456789";
+  const chars = "";
   let captcha = "";
   for (let i = 0; i < 6; i++) {
     captcha += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -27,14 +28,13 @@ const Login = () => {
   const [userCaptcha, setUserCaptcha] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleLogin = async () => {
     if (userCaptcha !== captcha) {
       setError("❌ Invalid CAPTCHA. Please try again.");
       setCaptcha(generateCaptcha());
       return;
     }
-
+  
     try {
       const response = await fetch("http://localhost:5000/auth/login", {
         method: "POST",
@@ -46,15 +46,18 @@ const Login = () => {
           password,
         }),
       });
-
+  
       const data = await response.json();
-
+  
       if (data.success) {
         setError("");
         console.log("✅ Login successful", data);
-        // Save token in localStorage (optional if your backend returns one)
-        // localStorage.setItem("token", data.token);
-        navigate("/dashboard");
+  
+        // Save token in localStorage
+        localStorage.setItem("token", data.token); // Save token in localStorage
+        localStorage.setItem("user", JSON.stringify(data.user)); // Optionally store user info as well
+  
+        navigate("/dashboard/workouts"); // Navigate to the dashboard
       } else {
         setError(data.message || "❌ Login failed.");
         setCaptcha(generateCaptcha());
@@ -65,6 +68,7 @@ const Login = () => {
       setCaptcha(generateCaptcha());
     }
   };
+  
 
   return (
     <Grid

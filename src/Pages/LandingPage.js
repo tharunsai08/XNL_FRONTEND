@@ -19,7 +19,7 @@ const LandingPage = () => {
           <Grid item xs={12} md={6}>
             <Box
               component="img"
-              src="https://source.unsplash.com/featured/?fitness,technology"
+              src="/Users/tharunsai_komma/Desktop/XNL/frontend/src/NavBar/fit_track.png"
               alt="AI Workout Recommendation"
               sx={{ width: '100%', borderRadius: 4, boxShadow: 4, height: 300, objectFit: 'cover' }}
             />

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Box, Card, CardContent, Typography, TextField, Button, Grid } from "@mui/material";
 
 const BMICalculator = () => {
-  const [age, setAge] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-  const [bmi, setBmi] = useState(null);
-  const [recommendation, setRecommendation] = useState("");
+const [age, setAge] = useState("");
+const [weight, setWeight] = useState("");
+const [height, setHeight] = useState("");
+const [bmi, setBmi] = useState(null);
+const [recommendation, setRecommendation] = useState("");
 
   const calculateBmi = () => {
     if (age && weight && height) {
