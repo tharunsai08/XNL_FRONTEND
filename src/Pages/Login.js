@@ -21,43 +21,89 @@ const generateCaptcha = () => {
 };
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [name, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const [userCaptcha, setUserCaptcha] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (userCaptcha !== captcha) {
-      setError("Invalid CAPTCHA. Please try again.");
+      setError("❌ Invalid CAPTCHA. Please try again.");
       setCaptcha(generateCaptcha());
-    } else {
-      setError("");
-      // TODO: Replace with actual API call
-      console.log("Login success with:", username, password);
-      navigate("/dashboard");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setError("");
+        console.log("✅ Login successful", data);
+        // Save token in localStorage (optional if your backend returns one)
+        // localStorage.setItem("token", data.token);
+        navigate("/dashboard");
+      } else {
+        setError(data.message || "❌ Login failed.");
+        setCaptcha(generateCaptcha());
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("❌ Something went wrong. Please try again.");
+      setCaptcha(generateCaptcha());
     }
   };
 
   return (
-    <Grid container sx={{ minHeight: "100vh", backgroundImage: "url(https://source.unsplash.com/featured/?gym,workout)", backgroundSize: "cover", backgroundPosition: "center" }}>
+    <Grid
+      container
+      sx={{
+        minHeight: "100vh",
+        backgroundImage: "url(https://source.unsplash.com/featured/?gym,fitness)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Grid item xs={12} md={6}></Grid>
+
       <Grid item xs={12} md={6}>
         <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-          <Paper elevation={10} sx={{ p: 4, width: "80%", maxWidth: 400, borderRadius: 4 }}>
+          <Paper
+            elevation={10}
+            sx={{
+              p: 4,
+              width: "80%",
+              maxWidth: 400,
+              borderRadius: 4,
+              backdropFilter: "blur(10px)",
+              backgroundColor: "rgba(255, 255, 255, 0.85)",
+            }}
+          >
             <Typography variant="h5" fontWeight={600} mb={3} align="center">
               User Login
             </Typography>
 
             <TextField
-              label="Username"
+              label="Email"
               variant="outlined"
               fullWidth
               margin="normal"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={name}
+              onChange={(e) => setEmail(e.target.value)}
             />
+
             <TextField
               label="Password"
               variant="outlined"
@@ -83,6 +129,7 @@ const Login = () => {
             >
               {captcha}
             </Box>
+
             <TextField
               label="Enter CAPTCHA"
               variant="outlined"
@@ -90,6 +137,7 @@ const Login = () => {
               value={userCaptcha}
               onChange={(e) => setUserCaptcha(e.target.value)}
             />
+
             {error && (
               <Typography color="error" variant="body2" mt={1}>
                 {error}
