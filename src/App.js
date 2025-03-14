@@ -3,7 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './Pages/Footer';
-import NavbarMain from './NavBar/NavBarMain';
+import NavBarMain from './NavBar/NavBarMain';
 import AppRouters from './Routes/AppRouters';
 import Box from '@mui/material/Box';
 
@@ -17,7 +17,7 @@ const App = () => {
       }}
     >
       <Router>
-        <NavbarMain />
+        <NavBarMain />
         <Box
           sx={{
             flex: 1, // Pushes the footer to the bottom when content is low

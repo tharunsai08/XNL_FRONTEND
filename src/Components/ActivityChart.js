@@ -1,9 +1,8 @@
-
 // src/components/Dashboard/ActivityChart.jsx
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend } from 'chart.js';
-import { Box, Typography } from '@mui/material';
+import { Container, Card, CardContent, Box, Typography } from '@mui/material';
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
@@ -44,10 +43,18 @@ const ActivityChart = () => {
   };
 
   return (
-    <Box className="bg-white rounded-2xl p-4 shadow-lg h-full">
-      <Typography variant="h6" fontWeight={600} mb={2}>Weekly Activity</Typography>
-      <Line data={chartData} />
-    </Box>
+    <Container maxWidth="lg" sx={{ padding: 0, marginBottom: 4,width:"150%" }}>
+      <Card sx={{ borderRadius: 3, boxShadow: 4 }}>
+        <CardContent>
+          <Box p={3} sx={{ backgroundColor: '#f0f4ff', borderRadius: 2 }}>
+            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 3, color: '#0A66C2' }}>
+              Weekly Activity Overview
+            </Typography>
+            <Line data={chartData} />
+          </Box>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 

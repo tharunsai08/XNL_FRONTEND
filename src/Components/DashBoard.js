@@ -6,12 +6,16 @@ import StatsSection from './StatsSection';
 import ActivityChart from './ActivityChart';
 import AiRecommendations from './AiRecommendations';
 import Leaderboard from './Leaderboard';
+import WorkoutBarChart from './WorkoutBarChart';
+import WorkoutTracker from './WorkoutTracker';
 
 
-const MainDashboard = () => {
+const DashBoard = () => {
   return (
     <Container maxWidth="lg" className="py-6">
+      <WorkoutTracker />
       <StatsSection />
+      <WorkoutBarChart />
       <Grid container spacing={4} mt={2}>
         <Grid item xs={12} md={8}><ActivityChart /></Grid>
         <Grid item xs={12} md={4}><AiRecommendations /></Grid>
@@ -22,5 +26,5 @@ const MainDashboard = () => {
   );
 };
 
-export default MainDashboard;
+export default DashBoard;
 

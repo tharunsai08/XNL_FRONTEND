@@ -7,6 +7,8 @@ import ForgotPassword from '../Pages/ForgotPassword';
 import Logout from '../Pages/Logout';
 import DashBoard from '../Components/DashBoard';
 import DashBoard2 from '../Component2/DashBoard2';
+import AIDashboard from '../DashBoard/AIDashboard';
+import FitnessDashboard from '../DashBoard/FitnessDashboard';
 
 // import ErrorPage from '../Components/Pages/ErrorPage'; // If you have a 404 error page
 
@@ -18,9 +20,12 @@ const AppRouters: React.FC = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/logout" element={<Logout />} />
-      <Route path="/dashboard2" element={<DashBoard2 />} />
+      <Route path="/dashboard/diet" element={<AIDashboard />} />
 
-      <Route path="/dashboard" element={<DashBoard />} />
+      {/* <Route path="/dashboard/diet" element={<DashBoard2 />} /> */}
+
+      <Route path="/dashboard" element={<FitnessDashboard />} />
+      {/* <Route path="/FitnessDashboard" element={<FitnessDashboard />} /> */}
 
 
       

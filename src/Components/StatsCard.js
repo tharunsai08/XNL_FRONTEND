@@ -1,16 +1,20 @@
+// src/components/Dashboard/StatsCard.jsx
 import React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography, Box } from '@mui/material';
 
 const StatsCard = ({ title, value }) => {
-    return (
-      <Card className="shadow-xl rounded-2xl">
-        <CardContent>
-          <Typography variant="h6" fontWeight={600}>{title}</Typography>
-          <Typography variant="h4" color="primary" fontWeight={700}>{value}</Typography>
-        </CardContent>
-      </Card>
-    );
-  };
-  
-  export default StatsCard;
-  
+  return (
+    <Card sx={{ borderRadius: 3, boxShadow: 2 }}>
+      <CardContent>
+        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+          {title}
+        </Typography>
+        <Box sx={{ fontSize: 24, fontWeight: 'bold', color: '#0A66C2' }}>
+          {value}
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default StatsCard;
